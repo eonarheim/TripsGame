@@ -1,0 +1,39 @@
+digraph g {
+	a0 [label="Your turn has started or is continuing!"]
+	a [label="Do you have a card higher or equal in value to the card on the faceup pile?"]
+	nocards [label="Draw three cards!"]
+	b [label="Do you have a special card? (2, 3, 10, or Joker)?"]
+	b1 [label="Play the 2"]
+	b2 [label="Play the 3"]
+	b3 [label="Play the 10"]
+	b4 [label="Pickup the faceup pile and put down the Joker"]
+	pickup [label="Pickup the faceup pile"]
+	play [label="Play the card"]
+	end [label="Was the faceup pile cleared by having three of the same card types in a row?"]
+	clear [label="Move the faceup pile into the discard pile"]
+	end1 [label="Your turn has ended!"]
+	draw [label="Draw up to three cards from the deck if you have fewer than three cards"]
+
+	a0 -> a
+	a -> b [label="yes, but I also have a special card"]
+	nocards -> a0
+	a -> play [label="yes"]
+	play -> end
+	b -> pickup [label="no"]
+	pickup -> end
+	b -> b1 [label="2"]
+	b1 -> a0
+	b -> b2 [label="3"]
+	b2 -> end1
+	b -> b3 [label="10"]
+	b3 -> clear
+	b -> b4 [label="Joker..."]
+	b4 -> end1
+	a -> nocards [label="I don't have any cards..."]
+
+	end -> end1 [label="no"]
+	end -> clear [label="yes"]
+	clear -> a0
+
+	end1 -> draw
+}

@@ -1,0 +1,21 @@
+digraph G {
+	a [label="Have all the cards been picked up in the deck?"]
+	a1 [label="You are not in the endgame yet... Keep Playing!"]
+	b [label="Do you still have cards in your hand?"]
+	b1 [label="Play the cards from your hand"]
+	c [label="Are there still faceup cards in front of you?"]
+	c1 [label="Play a faceup card"]
+	d [label="Are there facedown cards in front of you?"]
+	d1 [label="Pick a facedown card at random and play it"]
+	e [label="YOU WON THE GAME!"]
+
+	a -> b [label="yes"]
+	a -> a1 [label="no"]
+	b -> b1 [label="yes"]
+	b -> c [label="no"]
+	c -> c1 [label="yes"]
+	c -> d [label="no"]
+	d -> d1 [label="yes"]
+	d -> e [label="no"]
+
+}
